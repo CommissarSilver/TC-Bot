@@ -101,8 +101,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
     params = vars(args)
 
-    print 'Dialog Parameters: '
-    print json.dumps(params, indent=2)
+    print ('Dialog Parameters: ')
+    print (json.dumps(params, indent=2))
 
 
 max_turn = params['max_turn']
@@ -269,10 +269,10 @@ def save_model(path, agt, success_rate, agent, best_epoch, cur_epoch):
     checkpoint['params'] = params
     try:
         pickle.dump(checkpoint, open(filepath, "wb"))
-        print 'saved model in %s' % (filepath, )
-    except Exception, e:
-        print 'Error: Writing model fails: %s' % (filepath, )
-        print e
+        print ('saved model in %s' % (filepath, ))
+    except Exception as e:
+        print ('Error: Writing model fails: %s' % (filepath, ))
+        print (e)
 
 """ save performance numbers """
 def save_performance_records(path, agt, records):
@@ -280,10 +280,10 @@ def save_performance_records(path, agt, records):
     filepath = os.path.join(path, filename)
     try:
         json.dump(records, open(filepath, "wb"))
-        print 'saved model in %s' % (filepath, )
-    except Exception, e:
-        print 'Error: Writing model fails: %s' % (filepath, )
-        print e
+        print ('saved model in %s' % (filepath, ))
+    except Exception as e:
+        print ('Error: Writing model fails: %s' % (filepath, ))
+        print (e)
 
 """ Run N simulation Dialogues """
 def simulation_epoch(simulation_epoch_size):
