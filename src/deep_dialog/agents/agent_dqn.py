@@ -203,7 +203,7 @@ class AgentDQN(Agent):
         for (i, action) in enumerate(self.feasible_actions):
             if act_slot_response == action:
                 return i
-        print act_slot_response
+        print (act_slot_response)
         raise Exception("action index not found")
         return None
     
@@ -244,10 +244,10 @@ class AgentDQN(Agent):
         
         try:
             pickle.dump(self.experience_replay_pool, open(path, "wb"))
-            print 'saved model in %s' % (path, )
-        except Exception, e:
-            print 'Error: Writing model fails: %s' % (path, )
-            print e         
+            print ('saved model in %s' % (path, ))
+        except Exception as e:
+            print ('Error: Writing model fails: %s' % (path, ))
+            print (e)         
     
     def load_experience_replay_from_file(self, path):
         """ Load the experience replay pool from a file"""
@@ -261,5 +261,5 @@ class AgentDQN(Agent):
         trained_file = pickle.load(open(path, 'rb'))
         model = trained_file['model']
         
-        print "trained DQN Parameters:", json.dumps(trained_file['params'], indent=2)
+        print ("trained DQN Parameters:", json.dumps(trained_file['params'], indent=2))
         return model
