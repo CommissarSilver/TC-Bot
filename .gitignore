@@ -1,2 +1,10 @@
 *.pyc
 .vscode/settings.json
+src/.idea/misc.xml
+src/.idea/modules.xml
+src/.idea/src.iml
+src/.idea/.gitignore
+src/.idea/vcs.xml
+src/.idea/inspectionProfiles/profiles_settings.xml
+src/deep_dialog/checkpoints/rl_agent/agt_9_performance_records.json
+src/deep_dialog/checkpoints/rl_agent/agt_9_0_0_0.00000.p
