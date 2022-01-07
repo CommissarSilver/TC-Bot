@@ -14,8 +14,10 @@ Command: python .\run.py --agt 9 --usr 1 --max_turn 40 --movie_kb_path .\deep_di
 """
 
 
-import random, copy, json
-import _pickle as pickle
+import random
+import copy
+import json
+import cPickle as pickle
 import numpy as np
 
 from deep_dialog import dialog_config
@@ -26,11 +28,11 @@ from deep_dialog.qlearning import DQN
 
 class AgentDQN(Agent):
     def __init__(self, movie_dict=None, act_set=None, slot_set=None, params=None):
-        self.movie_dict = movie_dict
-        self.act_set = act_set
-        self.slot_set = slot_set
-        self.act_cardinality = len(act_set.keys())
-        self.slot_cardinality = len(slot_set.keys())
+        self.movie_dict = movie_dict  # the fuck is this?
+        self.act_set = act_set  # the fuck is this?
+        self.slot_set = slot_set  # the fuck is this?
+        self.act_cardinality = len(act_set.keys())  # the fuck is this?
+        self.slot_cardinality = len(slot_set.keys())  # the fuck is this?
 
         self.feasible_actions = dialog_config.feasible_actions
         self.num_actions = len(self.feasible_actions)
@@ -53,9 +55,10 @@ class AgentDQN(Agent):
         self.max_turn = params["max_turn"] + 4
         self.state_dimension = (
             2 * self.act_cardinality + 7 * self.slot_cardinality + 3 + self.max_turn
-        )
+        )  # the fuck is this?
 
-        self.dqn = DQN(self.state_dimension, self.hidden_size, self.num_actions)
+        self.dqn = DQN(self.state_dimension,
+                       self.hidden_size, self.num_actions)
         self.clone_dqn = copy.deepcopy(self.dqn)
 
         self.cur_bellman_err = 0
@@ -166,7 +169,8 @@ class AgentDQN(Agent):
         )
         for slot in kb_results_dict:
             if slot in self.slot_set:
-                kb_count_rep[0, self.slot_set[slot]] = kb_results_dict[slot] / 100.0
+                kb_count_rep[0, self.slot_set[slot]
+                             ] = kb_results_dict[slot] / 100.0
 
         ########################################################################
         #   Representation of KB results (binary)
@@ -288,7 +292,8 @@ class AgentDQN(Agent):
             print(
                 "cur bellman err %.4f, experience replay pool %s"
                 % (
-                    float(self.cur_bellman_err) / len(self.experience_replay_pool),
+                    float(self.cur_bellman_err) /
+                    len(self.experience_replay_pool),
                     len(self.experience_replay_pool),
                 )
             )
@@ -317,5 +322,6 @@ class AgentDQN(Agent):
         trained_file = pickle.load(open(path, "rb"))
         model = trained_file["model"]
 
-        print("trained DQN Parameters:", json.dumps(trained_file["params"], indent=2))
+        print("trained DQN Parameters:", json.dumps(
+            trained_file["params"], indent=2))
         return model

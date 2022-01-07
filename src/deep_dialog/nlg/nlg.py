@@ -7,7 +7,7 @@ Created on Oct 17, 2016
 @author: xiul
 """
 
-import _pickle as pickle
+import cPickle as pickle
 import copy, argparse, json
 import numpy as np
 

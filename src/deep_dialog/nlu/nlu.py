@@ -4,7 +4,7 @@ Created on Jul 13, 2016
 @author: xiul
 """
 
-import _pickle as pickle
+import cPickle as pickle
 import copy
 import numpy as np
 
